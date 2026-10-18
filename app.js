@@ -194,7 +194,7 @@ async function gerarPixAutomatico(){
   const img=$('pixQrAutomatico');
   if(qr){img.src='data:image/png;base64,'+qr;img.style.display='block';img.classList.remove('oculto');}
   status.textContent='Pix gerado. Aguardando confirmação do pagamento pelo Mercado Pago.';
- }catch(err){const msg=err?.message||'Falha na geração do Pix.';status.textContent=/Failed to fetch|NetworkError|Load failed/i.test(msg)?'Não foi possível conectar ao Render. Confira se o backend está Live e se o CORS permite https://dielzinho25.github.io.':'Erro ao gerar Pix: '+msg;console.error('Falha Pix',err);}
+ }catch(err){const msg=err?.message||'Falha na geração do Pix.';status.textContent=/Failed to fetch|NetworkError|Load failed/i.test(msg)?'Não foi possível conectar ao Render. Confira se o backend está Live e se o CORS permite https://edielrodrigues.github.io':'Erro ao gerar Pix: '+msg;console.error('Falha Pix',err);}
  finally{botao.disabled=false;}
 }
 
