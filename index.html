@@ -1,53 +1,107 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#111318"><title>Rifa Online V15.17</title><link rel="manifest" href="manifest.json?v=15.17"><meta name="theme-color" content="#121212"><link rel="apple-touch-icon" href="icon-192.png"><link rel="stylesheet" href="style.css?v=15.17"></head><body>
-<header class="topo"><div class="topo-conteudo"><span class="selo">RIFA ONLINE • FIREBASE V15.17</span><h1 id="nomeRifaTitulo">Escolha seus números</h1><p>São <strong id="quantidadeCabecalho">100</strong> números. Cada número custa <strong id="precoCabecalho">R$ 20,00</strong>.</p><p id="statusVendas" class="texto-apoio"></p></div></header>
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#111318"><title>Rifa Online V15.22</title><link rel="manifest" href="manifest.json?v=15.17"><link rel="apple-touch-icon" href="icon-192.png"><link rel="stylesheet" href="style.css?v=15.17">
+<style>
+/* V15.22: cartão único de resumo e cadastro. Mantém os IDs usados pelo app. */
+#formularioReservaBox.reserva-unificada{padding:clamp(17px,4vw,27px);overflow:hidden}
+.reserva-unificada>h2{font-size:clamp(24px,5vw,31px);line-height:1.15;margin:0 0 8px}
+.reserva-unificada .reserva-intro{color:#aab2c2;font-size:14px;line-height:1.5;margin:0 0 17px}
+.reserva-unificada .reserva-secao-titulo{font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:800;color:#a9b8d5;margin:19px 0 10px}
+.reserva-unificada .resumo-unificado{margin:0;padding:14px 16px;border:1px solid #343b4a;border-radius:16px;background:linear-gradient(145deg,#202630,#181d26);box-shadow:none}
+.reserva-unificada .resumo-unificado h2{display:none}
+.reserva-unificada .resumo-linha{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:9px 0;margin:0;border-bottom:1px solid rgba(255,255,255,.08);font-size:14px}
+.reserva-unificada .resumo-linha:last-child{border-bottom:0}
+.reserva-unificada .resumo-linha>span{flex:0 0 auto;color:#b8c1cf}
+.reserva-unificada .resumo-linha>strong{text-align:right;min-width:0;overflow-wrap:anywhere;font-size:15px}
+.reserva-unificada .resumo-linha.total{padding-top:13px}
+.reserva-unificada .resumo-linha.total strong{color:#f2c35b;font-size:24px}
+.reserva-unificada .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.reserva-unificada .form-grid label{min-width:0}
+.reserva-unificada .form-grid input{width:100%;min-width:0;box-sizing:border-box}
+.reserva-unificada .aceite{margin-top:18px}
+.reserva-unificada #btnReservar{width:100%;margin-top:16px;min-height:48px}
+@media(max-width:540px){.reserva-unificada .form-grid{grid-template-columns:1fr;gap:12px}.reserva-unificada .resumo-linha{font-size:13px}.reserva-unificada .resumo-linha>strong{font-size:14px}}
+</style>
+<style id="af-perfil-estilos">
+.af-perfil{background:linear-gradient(145deg,#23344a,#19232f);border:1px solid #40536a;border-radius:20px;padding:18px;margin:4px 0 20px;color:#f5f7fb;box-shadow:0 10px 24px #0002}
+.af-perfil[hidden]{display:none!important}
+.af-perfil-topo{display:flex;align-items:center;gap:14px;min-width:0}
+.af-avatar{width:66px;height:66px;min-width:66px;border-radius:50%;display:grid;place-items:center;font-size:32px;background:#34475f;border:2px solid #e4b233}
+.af-perfil-identidade{display:flex;flex-direction:column;gap:4px;min-width:0}
+.af-perfil-selo{font-size:10px;font-weight:800;letter-spacing:1px;color:#f3ca62}
+#afPerfilNome{font-size:21px;line-height:1.2;overflow-wrap:anywhere}
+.af-perfil-completo{font-size:13px;color:#cad3df;overflow-wrap:anywhere}
+.af-perfil-meta{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #ffffff1d;font-size:13px}
+.af-perfil-meta span{color:#bdc8d6}
+.af-perfil-meta strong{font-size:13px;text-align:right;overflow-wrap:anywhere}
+.af-perfil-nota{font-size:12px;color:#c5cfdb;line-height:1.5;margin:14px 0 0}
+@media(max-width:390px){.af-perfil{padding:14px}.af-avatar{width:54px;height:54px;min-width:54px;font-size:27px}#afPerfilNome{font-size:18px}}
+</style>
+</head><body>
+<header class="topo"><div class="topo-conteudo"><span class="selo">RIFA ONLINE • FIREBASE V15.22</span><h1 id="nomeRifaTitulo">Escolha seus números</h1><p>São <strong id="quantidadeCabecalho">100</strong> números. Cada número custa <strong id="precoCabecalho">R$ 20,00</strong>.</p><p id="statusVendas" class="texto-apoio"></p></div></header>
 <main class="container">
-
-<section id="premioBox" class="card premio-box oculto">
-  <img id="bannerPremio" class="banner-premio oculto" alt="Prêmio da rifa">
-  <div><span class="mini-selo">🎁 PRÊMIO</span><h2 id="nomePremio">Prêmio da rifa</h2><p id="descricaoPremio" class="texto-apoio"></p><p id="dataSorteioTexto" class="texto-apoio"></p></div>
-</section>
+<section id="premioBox" class="card premio-box oculto"><img id="bannerPremio" class="banner-premio oculto" alt="Prêmio da rifa"><div><span class="mini-selo">🎁 PRÊMIO</span><h2 id="nomePremio">Prêmio da rifa</h2><p id="descricaoPremio" class="texto-apoio"></p><p id="dataSorteioTexto" class="texto-apoio"></p></div></section>
 <section class="card vencedor-chamada"><div><span class="mini-selo">🏆 RESULTADO DA RIFA</span><h2>Veja o vencedor sorteado</h2><p class="texto-apoio">O resultado oficial aparece para todos em tempo real.</p></div><a class="botao vencedor-btn" href="vencedor.html">Abrir página do vencedor</a></section>
-<section class="card"><h2>Andamento da rifa</h2><div class="dashboard-grid"><div class="dash-item"><span>Disponíveis</span><strong id="pubLivres">100</strong></div><div class="dash-item"><span>Reservados</span><strong id="pubReservados">0</strong></div><div class="dash-item"><span>Confirmados</span><strong id="pubConfirmados">0</strong></div><div class="dash-item"><span>Participantes</span><strong id="pubParticipantes">0</strong></div></div><div class="progresso"><div id="barraProgresso" class="progresso-barra"></div></div><p id="textoProgresso" class="texto-apoio">0 de 100 números confirmados.</p></section><section class="card"><div class="cabecalho-card"><div><h2>Números da rifa</h2><p>Toque nos números verdes para selecionar.</p></div><button id="btnAtualizar" class="botao secundario" type="button">Atualizar</button></div><div id="mensagemGrade" class="aviso">Conectando ao Firebase…</div><div id="gradeNumeros" class="grade"></div><div class="legenda"><span><i class="cor livre"></i>Livre</span><span><i class="cor selecionado"></i>Selecionado</span><span><i class="cor reservado"></i>Reservado</span><span><i class="cor confirmado"></i>Confirmado</span></div></section>
-<section class="card resumo"><h2>Seus números</h2><div class="resumo-linha"><span>Quantidade</span><strong id="quantidade">0</strong></div><div class="resumo-linha"><span>Números escolhidos</span><strong id="numerosEscolhidos">Nenhum</strong></div><div class="resumo-linha total"><span>Valor total</span><strong id="total">R$ 0,00</strong></div></section>
-<section id="formularioReservaBox" class="card"><h2>Preencha seus dados</h2><p class="texto-apoio">Os dados serão salvos no Firebase e os números aparecerão reservados para todos.</p><form id="formRifa" novalidate><div class="form-grid"><label>Nome completo<input id="nome" required placeholder="Digite seu nome completo"></label><label>Telefone<input id="telefone" inputmode="tel" required placeholder="(34) 99999-9999"></label><label>CPF<input id="cpf" inputmode="numeric" maxlength="14" required placeholder="000.000.000-00"></label><label>E-mail <small>(opcional)</small><input id="email" type="email" placeholder="seuemail@gmail.com"></label></div><label class="aceite"><input id="aceite" type="checkbox" required><span>Confirmo que os dados estão corretos.</span></label><button id="btnReservar" class="botao principal" type="submit">Reservar números</button></form></section>
+<section class="card"><h2>Andamento da rifa</h2><div class="dashboard-grid"><div class="dash-item"><span>Disponíveis</span><strong id="pubLivres">100</strong></div><div class="dash-item"><span>Reservados</span><strong id="pubReservados">0</strong></div><div class="dash-item"><span>Confirmados</span><strong id="pubConfirmados">0</strong></div><div class="dash-item"><span>Participantes</span><strong id="pubParticipantes">0</strong></div></div><div class="progresso"><div id="barraProgresso" class="progresso-barra"></div></div><p id="textoProgresso" class="texto-apoio">0 de 100 números confirmados.</p></section>
+<section class="card"><div class="cabecalho-card"><div><h2>Números da rifa</h2><p>Toque nos números verdes para selecionar.</p></div><button id="btnAtualizar" class="botao secundario" type="button">Atualizar</button></div><div id="mensagemGrade" class="aviso">Conectando ao Firebase…</div><div id="gradeNumeros" class="grade"></div><div class="legenda"><span><i class="cor livre"></i>Livre</span><span><i class="cor selecionado"></i>Selecionado</span><span><i class="cor reservado"></i>Reservado</span><span><i class="cor confirmado"></i>Confirmado</span></div></section>
+<section id="formularioReservaBox" class="card reserva-unificada"><h2>Finalize sua reserva</h2><p class="reserva-intro">Confira seus números e preencha os dados para continuar.</p><div class="reserva-secao-titulo">Resumo da sua escolha</div><div class="resumo-unificado"><div class="resumo-linha"><span>Quantidade</span><strong id="quantidade">0</strong></div><div class="resumo-linha"><span>Números escolhidos</span><strong id="numerosEscolhidos">Nenhum</strong></div><div class="resumo-linha total"><span>Valor total</span><strong id="total">R$ 0,00</strong></div></div><div class="reserva-secao-titulo">Seus dados</div><p class="texto-apoio">Seus dados serão usados para identificar a reserva no Firebase.</p><form id="formRifa" novalidate><div class="form-grid"><label>Nome completo<input id="nome" required placeholder="Digite seu nome completo"></label><label>Telefone<input id="telefone" inputmode="tel" required placeholder="(34) 99999-9999"></label><label>CPF<input id="cpf" inputmode="numeric" maxlength="14" required placeholder="000.000.000-00"></label><label>E-mail <small>(opcional)</small><input id="email" type="email" placeholder="seuemail@gmail.com"></label></div><label class="aceite"><input id="aceite" type="checkbox" required><span>Confirmo que os dados estão corretos.</span></label><button id="btnReservar" class="botao principal" type="submit">Reservar números</button></form></section>
 <section id="sucessoBox" class="card sucesso oculto"><div class="icone-sucesso">✓</div><h2>Reserva registrada!</h2><p>Faça o pagamento pela opção configurada pelo administrador.</p><div class="comprovante"><p><span>Código</span><strong id="codigoReserva"></strong></p><p><span>Números</span><strong id="numerosReserva"></strong></p><p><span>Total</span><strong id="valorReserva"></strong></p><p><span>Status</span><strong id="statusReserva">Aguardando confirmação</strong></p></div><div id="pixAutomaticoArea" class="pix-box oculto"><h3>Pix automático</h3><p class="texto-apoio">Cobrança vinculada à sua reserva. A confirmação depende do servidor de pagamentos.</p><button id="btnGerarPixAutomatico" type="button" class="botao principal">Gerar Pix da reserva</button><p id="pixAutomaticoStatus" class="texto-apoio" role="status"></p><img id="pixQrAutomatico" alt="QR Code Pix" class="oculto" style="display:none;max-width:220px;width:100%;margin:12px auto"><textarea id="pixCopiaAutomatico" class="oculto" readonly rows="3" style="width:100%;margin-top:8px"></textarea><button id="btnCopiarPixAutomatico" class="botao secundario oculto" type="button">Copiar código Pix</button></div><a id="btnPagarMercadoPago" class="botao pagamento oculto" href="#" target="_blank" rel="noopener">Pagar no Mercado Pago</a><div id="pixBox" class="pix-box oculto"><h3>Pagar pela chave Pix</h3><p id="pixRecebedor" class="texto-apoio"></p><div class="pix-chave"><strong id="pixChave"></strong><button id="btnCopiarPix" class="botao copiar-pix" type="button">Copiar Pix</button></div></div><p id="avisoPagamento" class="aviso-pagamento oculto"></p><div class="confirmacao-cliente"><label>Nome usado no pagamento <small>(opcional)</small><input id="nomePagador" placeholder="Ex.: Ediel Rodrigues"></label><button id="btnInformarPagamento" class="botao confirmar-pagamento" type="button">✅ Já fiz o pagamento</button><p class="texto-apoio">A reserva só será confirmada depois da conferência do administrador.</p></div><button id="btnNovaReserva" class="botao secundario" type="button">Fazer outra reserva</button></section>
-
-<section class="card afiliado-box">
-  <details class="config-retratil">
-    <summary><span>🤝 Ganhe indicando amigos</span><small>Toque para abrir ou fechar</small></summary>
-    <div class="config-conteudo">
-      <p class="texto-apoio">Esta área fica oculta. Digite o seu CPF para cadastrar ou consultar somente os dados vinculados a ele. A comissão entra no saldo apenas depois que o pagamento da reserva indicada for confirmado pelo administrador.</p>
-      <div class="form-grid">
-        <label>Seu CPF<input id="afCpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00"></label>
-        <label>Nome completo<input id="afNome" placeholder="Seu nome completo"></label>
-        <label>Telefone<input id="afTelefone" inputmode="tel" placeholder="(34) 99999-9999"></label>
-        <label>Chave Pix<input id="afPix" placeholder="CPF, telefone, e-mail ou chave aleatória"></label>
-      </div>
-      <div class="linha-botoes">
-        <button id="btnConsultarAfiliado" class="botao secundario" type="button">🔎 Consultar pelo CPF</button>
-        <button id="btnSalvarAfiliado" class="botao principal" type="button">💾 Criar/atualizar cadastro</button>
-      </div>
-      <p id="afMensagem" class="status-operacao"></p>
-      <div id="afPainel" class="afiliado-painel oculto">
-        <div class="dashboard-grid">
-          <div class="dash-item"><span>Saldo disponível</span><strong id="afSaldo">R$ 0,00</strong></div>
-          <div class="dash-item"><span>Total ganho</span><strong id="afTotalGanhos">R$ 0,00</strong></div>
-          <div class="dash-item"><span>Indicações confirmadas</span><strong id="afIndicacoes">0</strong></div>
-          <div class="dash-item"><span>Total já pago</span><strong id="afTotalPago">R$ 0,00</strong></div>
-        </div>
-        <label>Seu link exclusivo de indicação<div class="consulta-cpf-linha"><input id="afLink" readonly><button id="btnCopiarLinkAfiliado" class="botao principal" type="button">Copiar link</button></div></label>
-        <h3>Compras indicadas</h3><div id="afListaComissoes"><p class="texto-apoio">Nenhuma comissão confirmada.</p></div>
-      </div>
+<section class="card afiliado-box"><details class="config-retratil"><summary><span>🤝 Ganhe indicando amigos</span><small>Toque para abrir ou fechar</small></summary><div class="config-conteudo">
+<div id="afPerfil" class="af-perfil" hidden aria-live="polite">
+  <div class="af-perfil-topo">
+    <div class="af-avatar" aria-hidden="true">👤</div>
+    <div class="af-perfil-identidade">
+      <span class="af-perfil-selo">MEU PERFIL DE INDICAÇÕES</span>
+      <strong id="afPerfilNome">Meu perfil</strong>
+      <span id="afPerfilNomeCompleto" class="af-perfil-completo"></span>
     </div>
-  </details>
-</section>
+  </div>
+  <div class="af-perfil-meta"><span>ID do perfil</span><strong id="afPerfilId">—</strong></div>
+  <div class="af-perfil-meta"><span>Telefone</span><strong id="afPerfilTelefone">—</strong></div>
+  <div class="af-perfil-meta"><span>CPF</span><strong id="afPerfilCpf">•••.•••.•••-••</strong></div>
+  <p class="af-perfil-nota">Perfil vinculado ao cadastro de indicações. Consulte pelo CPF para carregar os dados salvos.</p>
+</div>
+<p class="texto-apoio">Esta área fica oculta. Digite o seu CPF para cadastrar ou consultar somente os dados vinculados a ele. A comissão entra no saldo apenas depois que o pagamento da reserva indicada for confirmado pelo administrador.</p><div class="form-grid"><label>Seu CPF<input id="afCpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00"></label><label>Nome completo<input id="afNome" placeholder="Seu nome completo"></label><label>Telefone<input id="afTelefone" inputmode="tel" placeholder="(34) 99999-9999"></label><label>Chave Pix<input id="afPix" placeholder="CPF, telefone, e-mail ou chave aleatória"></label></div><div class="linha-botoes"><button id="btnConsultarAfiliado" class="botao secundario" type="button">🔎 Consultar pelo CPF</button><button id="btnSalvarAfiliado" class="botao principal" type="button">💾 Criar/atualizar cadastro</button></div><p id="afMensagem" class="status-operacao"></p><div id="afPainel" class="afiliado-painel oculto"><div class="dashboard-grid"><div class="dash-item"><span>Saldo disponível</span><strong id="afSaldo">R$ 0,00</strong></div><div class="dash-item"><span>Total ganho</span><strong id="afTotalGanhos">R$ 0,00</strong></div><div class="dash-item"><span>Indicações confirmadas</span><strong id="afIndicacoes">0</strong></div><div class="dash-item"><span>Total já pago</span><strong id="afTotalPago">R$ 0,00</strong></div></div><label>Seu link exclusivo de indicação<div class="consulta-cpf-linha"><input id="afLink" readonly><button id="btnCopiarLinkAfiliado" class="botao principal" type="button">Copiar link</button></div></label><h3>Compras indicadas</h3><div id="afListaComissoes"><p class="texto-apoio">Nenhuma comissão confirmada.</p></div></div></div></details></section>
 <section class="card consulta-cpf"><h2>Buscar minhas reservas pelo CPF</h2><p class="texto-apoio">Digite o mesmo CPF usado na reserva para consultar todas as reservas salvas no Firebase, mesmo em outro aparelho.</p><div class="consulta-cpf-linha"><input id="consultaCpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00"><button id="btnBuscarCpf" class="botao principal" type="button">Buscar reservas</button></div><div id="mensagemCpf" class="aviso oculto"></div><div id="reservasCpf"></div></section>
+<section class="card repetir-card"><h2>Repetir números selecionados</h2><p class="texto-apoio">Ouça em voz alta os números escolhidos.</p><button id="btnRepetirNumeros" class="botao repetir" type="button">🔊 Repetir números selecionados</button><p id="mensagemRepetir" class="texto-apoio"></p></section><section id="regulamentoBox" class="card oculto"><h2>📜 Regulamento</h2><div id="regulamentoTexto" class="texto-apoio texto-pre"></div></section></main><footer>Dados sincronizados pelo Firebase Realtime Database.</footer><footer class="rodape-versao"><p>Versão: V15.22</p><p>Última atualização: 26/10/2026</p></footer>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script><script src="firebase-config.js?v=15.17"></script><script src="pagamentos-config.js?v=15.17"></script><script src="app.js?v=15.17"></script><script src="pix-fluxo-v2.js?v=2.7.0"></script>
 
-<section class="card repetir-card"><h2>Repetir números selecionados</h2><p class="texto-apoio">Ouça em voz alta os números escolhidos.</p><button id="btnRepetirNumeros" class="botao repetir" type="button">🔊 Repetir números selecionados</button><p id="mensagemRepetir" class="texto-apoio"></p></section>
-<section id="regulamentoBox" class="card oculto"><h2>📜 Regulamento</h2><div id="regulamentoTexto" class="texto-apoio texto-pre"></div></section></main><footer>Dados sincronizados pelo Firebase Realtime Database.</footer>
-
-<footer class="rodape-versao"><p>Versão: V15.17</p><p>Última atualização: 17/10/2026</p></footer>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script><script src="firebase-config.js?v=15.17"></script><script src="pagamentos-config.js?v=15.17"></script><script src="app.js?v=15.17"></script>
-<script src="pix-fluxo-v2.js?v=2.7.0"></script>
-</body>                                                                                                                                                                                                             
-</html>
+<script id="af-perfil-script">
+(function(){
+  "use strict";
+  const el=id=>document.getElementById(id);
+  const dig=v=>String(v||"").replace(/\D/g,"");
+  const formatCpf=cpf=>cpf.slice(0,3)+"."+cpf.slice(3,6)+"."+cpf.slice(6,9)+"-"+cpf.slice(9);
+  let consultaAtual=0;
+  async function carregarPerfil(){
+    const token=++consultaAtual;
+    const cpf=dig(el("afCpf")?.value);
+    if(cpf.length!==11){el("afPerfil").hidden=true;return;}
+    try{
+      if(!window.firebase||!firebase.apps.length)return;
+      const snap=await firebase.database().ref("rifa/afiliadosPorCpf/"+cpf).once("value");
+      if(token!==consultaAtual)return;
+      if(!snap.exists()){el("afPerfil").hidden=true;return;}
+      const d=snap.val()||{};
+      const nome=String(d.nome||"").trim();
+      const partes=nome.split(/\s+/).filter(Boolean);
+      el("afPerfilNome").textContent=partes[0]||"Cliente";
+      el("afPerfilNomeCompleto").textContent=nome||"Nome não informado";
+      el("afPerfilId").textContent=String(d.codigo||"Não atribuído");
+      el("afPerfilTelefone").textContent=String(d.telefone||"Não informado");
+      el("afPerfilCpf").textContent=formatCpf(cpf);
+      el("afPerfil").hidden=false;
+    }catch(err){console.warn("Não foi possível carregar o perfil:",err);el("afPerfil").hidden=true;}
+  }
+  function iniciar(){
+    const consultar=el("btnConsultarAfiliado"),salvar=el("btnSalvarAfiliado"),cpf=el("afCpf");
+    if(!consultar||!salvar||!cpf)return;
+    consultar.addEventListener("click",()=>{carregarPerfil();});
+    salvar.addEventListener("click",()=>{setTimeout(carregarPerfil,1100);setTimeout(carregarPerfil,2500);});
+    cpf.addEventListener("input",()=>{++consultaAtual;el("afPerfil").hidden=true;});
+    cpf.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();consultar.click();}});
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",iniciar);
+  else iniciar();
+})();
+</script>
+</body></html>
