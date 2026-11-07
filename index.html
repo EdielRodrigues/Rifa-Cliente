@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#111318"><title>Rifa Online V15.22</title><link rel="manifest" href="manifest.json?v=15.17"><link rel="apple-touch-icon" href="icon-192.png"><link rel="stylesheet" href="style.css?v=15.17">
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#111318"><title>Rifa Online V15.22</title><link rel="manifest" href="manifest.json?v=pwa2"><link rel="apple-touch-icon" sizes="192x192" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Rifa Online"><meta name="mobile-web-app-capable" content="yes"><link rel="stylesheet" href="style.css?v=15.17">
 <style>
 /* V15.22: cartão único de resumo e cadastro. Mantém os IDs usados pelo app. */
 #formularioReservaBox.reserva-unificada{padding:clamp(17px,4vw,27px);overflow:hidden}
@@ -38,7 +38,7 @@
 </style>
 </head><body>
 <header class="topo"><div class="topo-conteudo"><span class="selo">RIFA ONLINE • FIREBASE V15.22</span><h1 id="nomeRifaTitulo">Escolha seus números</h1><p>São <strong id="quantidadeCabecalho">100</strong> números. Cada número custa <strong id="precoCabecalho">R$ 20,00</strong>.</p><p id="statusVendas" class="texto-apoio"></p></div></header>
-<main class="container">
+<main class="container"><section class="card" id="pwaInstalarBox" aria-label="Instalar aplicativo no celular"><h2>📲 Instalar Rifa Online no celular</h2><p class="texto-apoio">Adicione o aplicativo à tela inicial do seu celular para abrir como um app.</p><button id="btnInstalarPwa" class="botao principal" type="button">📲 Instalar aplicativo</button><p id="pwaInstalarAjuda" class="texto-apoio" role="status" aria-live="polite"></p></section>
 <section id="premioBox" class="card premio-box oculto"><img id="bannerPremio" class="banner-premio oculto" alt="Prêmio da rifa"><div><span class="mini-selo">🎁 PRÊMIO</span><h2 id="nomePremio">Prêmio da rifa</h2><p id="descricaoPremio" class="texto-apoio"></p><p id="dataSorteioTexto" class="texto-apoio"></p></div></section>
 <section class="card vencedor-chamada"><div><span class="mini-selo">🏆 RESULTADO DA RIFA</span><h2>Veja o vencedor sorteado</h2><p class="texto-apoio">O resultado oficial aparece para todos em tempo real.</p></div><a class="botao vencedor-btn" href="vencedor.html">Abrir página do vencedor</a></section>
 <section class="card"><h2>Andamento da rifa</h2><div class="dashboard-grid"><div class="dash-item"><span>Disponíveis</span><strong id="pubLivres">100</strong></div><div class="dash-item"><span>Reservados</span><strong id="pubReservados">0</strong></div><div class="dash-item"><span>Confirmados</span><strong id="pubConfirmados">0</strong></div><div class="dash-item"><span>Participantes</span><strong id="pubParticipantes">0</strong></div></div><div class="progresso"><div id="barraProgresso" class="progresso-barra"></div></div><p id="textoProgresso" class="texto-apoio">0 de 100 números confirmados.</p></section>
@@ -104,4 +104,5 @@
   else iniciar();
 })();
 </script>
+<script src="instalar-app.js?v=pwa2" defer></script>
 </body></html>
